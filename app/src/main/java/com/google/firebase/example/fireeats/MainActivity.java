@@ -103,8 +103,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void initFirestore() {
-        // TODO(developer): Implement
-
+        mFirestore = FirebaseFirestore.getInstance();
     }
 
     private void initRecyclerView() {
@@ -168,6 +167,15 @@ public class MainActivity extends AppCompatActivity implements
     private void onAddItemsClicked() {
         // TODO(developer): Add random restaurants
         // Get a reference to the restaurants collection
+
+        // Get a reference to the restaurants collection
+        CollectionReference restaurants = mFirestore.collection("restaurants");
+        for (int i = 0; i < 10; i++) {
+            // Get a random Restaurant POJO
+            Restaurant restaurant = RestaurantUtil.getRandom(this);
+            // Add a new document to the restaurants collection
+            restaurants.add(restaurant);
+        }
 
         showTodoToast();
     }
