@@ -40,7 +40,9 @@ public class FirebaseUtil {
             // Connect to the Cloud Firestore emulator when appropriate. The host '10.0.2.2' is a
             // special IP address to let the Android emulator connect to 'localhost'.
             if (sUseEmulators) {
-                FIRESTORE.useEmulator("10.0.2.2", 8080);
+                try {
+                    FIRESTORE.useEmulator("10.0.2.2", 8080);
+                } catch (IllegalStateException e) {}
             }
         }
 
